@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "M.Thanuja",
+    "role": "AI Teacher",
+    "subject": "Administration",
+    "qualifications": "M.A., B.Ed.",
+    "experience": "17 years",
+    "email": "hm.zphs@gmail.com",
+    "avatar": "Mt"
+  },
+  {
+    "id": 2,
+    "name": "Smt. P. Padmavathi",
+    "role": "Senior Teacher",
+    "subject": "Telugu",
+    "qualifications": "M.A. (Telugu), B.Ed.",
+    "experience": "20 years",
+    "email": "padmavathi@zphs.edu",
+    "avatar": "PP"
+  },
+  {
+    "id": 3,
+    "name": "Sri. M. Subrahmanyam",
+    "role": "Senior Teacher",
+    "subject": "Mathematics",
+    "qualifications": "M.Sc. (Maths), B.Ed.",
+    "experience": "18 years",
+    "email": "subramanyam@zphs.edu",
+    "avatar": "MS"
+  },
+  {
+    "id": 4,
+    "name": "Smt. V. Saraswathi",
+    "role": "Senior Teacher",
+    "subject": "Science",
+    "qualifications": "M.Sc. (Physics), B.Ed.",
+    "experience": "15 years",
+    "email": "saraswathi@zphs.edu",
+    "avatar": "VS"
+  },
+  {
+    "id": 5,
+    "name": "Sri. R. Narayana Rao",
+    "role": "Teacher",
+    "subject": "Social Studies",
+    "qualifications": "M.A. (History), B.Ed.",
+    "experience": "12 years",
+    "email": "narayana@zphs.edu",
+    "avatar": "RN"
+  },
+  {
+    "id": 6,
+    "name": "Smt. L. Bhavani",
+    "role": "Teacher",
+    "subject": "English",
+    "qualifications": "M.A. (English), B.Ed.",
+    "experience": "10 years",
+    "email": "bhavani@zphs.edu",
+    "avatar": "LB"
+  },
+  {
+    "id": 7,
+    "name": "Sri. T. Ramakrishna",
+    "role": "Teacher",
+    "subject": "Hindi",
+    "qualifications": "M.A. (Hindi), B.Ed.",
+    "experience": "14 years",
+    "email": "ramakrishna@zphs.edu",
+    "avatar": "TR"
+  },
+  {
+    "id": 8,
+    "name": "Sri. K. Prasad",
+    "role": "Physical Education Teacher",
+    "subject": "Physical Education",
+    "qualifications": "B.P.Ed.",
+    "experience": "9 years",
+    "email": "prasad.pe@zphs.edu",
+    "avatar": "KP"
+  },
+  {
+    "id": 9,
+    "name": "Smt. D. Anuradha",
+    "role": "Teacher",
+    "subject": "Mathematics",
+    "qualifications": "M.Sc. (Maths), B.Ed.",
+    "experience": "8 years",
+    "email": "anuradha@zphs.edu",
+    "avatar": "DA"
+  },
+  {
+    "id": 10,
+    "name": "Sri. S. Murthy",
+    "role": "Teacher",
+    "subject": "Science",
+    "qualifications": "M.Sc. (Chemistry), B.Ed.",
+    "experience": "11 years",
+    "email": "murthy@zphs.edu",
+    "avatar": "SM"
+  },
+  {
+    "id": 11,
+    "name": "Smt. G. Kamala",
+    "role": "Teacher",
+    "subject": "Telugu",
+    "qualifications": "M.A. (Telugu), B.Ed.",
+    "experience": "7 years",
+    "email": "kamala@zphs.edu",
+    "avatar": "GK"
+  },
+  {
+    "id": 12,
+    "name": "Sri. A. Srinivasa Rao",
+    "role": "Teacher",
+    "subject": "Social Studies",
+    "qualifications": "M.A. (Geography), B.Ed.",
+    "experience": "6 years",
+    "email": "srinivasa@zphs.edu",
+    "avatar": "AS"
+  }
+]

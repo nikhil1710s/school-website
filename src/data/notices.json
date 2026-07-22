@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "title": "Annual Examinations Schedule 2025-26",
+    "date": "2026-04-05",
+    "category": "exam",
+    "content": "Annual examinations for classes 6 to 10 will commence from April 20, 2026. Students are advised to collect their hall tickets from the school office by April 15, 2026. All students must report 30 minutes before the exam start time.",
+    "pinned": true,
+    "pdfUrl": null
+  },
+  {
+    "id": 2,
+    "title": "Summer Vacation Notice",
+    "date": "2026-04-01",
+    "category": "general",
+    "content": "School will be closed for summer vacation from May 15, 2026 to June 10, 2026. New academic session begins on June 11, 2026. Admission for new students will be open during the vacation period.",
+    "pinned": true,
+    "pdfUrl": null
+  },
+  {
+    "id": 3,
+    "title": "SSC Results 2025 — Outstanding Performance",
+    "date": "2026-03-28",
+    "category": "result",
+    "content": "Congratulations! ZPHS Anandhapuram achieved a 100% pass percentage in SSC examinations 2025. 12 students scored GPA 10.0. The school management congratulates all students and teachers for this wonderful achievement.",
+    "pinned": false,
+    "pdfUrl": null
+  },
+  {
+    "id": 4,
+    "title": "Parent-Teacher Meeting — April 2026",
+    "date": "2026-03-25",
+    "category": "meeting",
+    "content": "A Parent-Teacher Meeting is scheduled on April 12, 2026 (Saturday) from 9:00 AM to 1:00 PM. All parents are requested to attend and collect their ward's progress report. Attendance is mandatory.",
+    "pinned": false,
+    "pdfUrl": null
+  },
+  {
+    "id": 5,
+    "title": "Scholarship Applications Open — SC/ST Students",
+    "date": "2026-03-20",
+    "category": "scholarship",
+    "content": "Applications for Pre-Matric Scholarship for SC/ST students are now open. Eligible students must submit completed application forms to the school office by April 5, 2026 along with required documents.",
+    "pinned": false,
+    "pdfUrl": null
+  },
+  {
+    "id": 6,
+    "title": "Sports Day — Inter-House Competition",
+    "date": "2026-03-15",
+    "category": "event",
+    "content": "Annual Sports Day and Inter-House competition will be held on April 8, 2026. Events include running, long jump, cricket, kabaddi, and kho-kho. Students interested in participating should register with their respective sports teachers.",
+    "pinned": false,
+    "pdfUrl": null
+  },
+  {
+    "id": 7,
+    "title": "Free Uniform Distribution — 2026-27",
+    "date": "2026-03-10",
+    "category": "general",
+    "content": "Free uniforms will be distributed to all students as per the AP Government scheme. Students from Classes 1 to 10 will receive 2 sets of uniforms. Distribution will begin on June 12, 2026 (First day of school).",
+    "pinned": false,
+    "pdfUrl": null
+  },
+  {
+    "id": 8,
+    "title": "Science Exhibition — District Level",
+    "date": "2026-03-05",
+    "category": "event",
+    "content": "ZPHS Anandhapuram will participate in the District Level Science Exhibition on April 25, 2026. Students interested in presenting projects must submit their project abstracts to the Science teacher by April 10, 2026.",
+    "pinned": false,
+    "pdfUrl": null
+  }
+]

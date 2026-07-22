@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "title": "Annual Sports Day 2025",
+    "caption": "Students competing in 100m sprint event",
+    "category": "sports",
+    "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80",
+    "date": "2025-12-10"
+  },
+  {
+    "id": 2,
+    "title": "Annual Day 2025",
+    "caption": "Cultural dance performance by Class 9 students",
+    "category": "cultural",
+    "image": "https://images.unsplash.com/photo-1508997449629-303059a039c0?w=800&q=80",
+    "date": "2025-12-20"
+  },
+  {
+    "id": 3,
+    "title": "Science Exhibition",
+    "caption": "Students showcasing innovative science models",
+    "category": "academic",
+    "image": "https://images.unsplash.com/photo-1532094349884-543559c3661a?w=800&q=80",
+    "date": "2025-11-25"
+  },
+  {
+    "id": 4,
+    "title": "Independence Day 2025",
+    "caption": "Flag hoisting ceremony and march past",
+    "category": "national",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    "date": "2025-08-15"
+  },
+  {
+    "id": 5,
+    "title": "Republic Day 2026",
+    "caption": "Students' patriotic performance and prize distribution",
+    "category": "national",
+    "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
+    "date": "2026-01-26"
+  },
+  {
+    "id": 6,
+    "title": "Children's Day 2025",
+    "caption": "Fun games and activities organised by teachers",
+    "category": "cultural",
+    "image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
+    "date": "2025-11-14"
+  },
+  {
+    "id": 7,
+    "title": "Kabaddi State Championship",
+    "caption": "School team at the State Level Kabaddi Championship",
+    "category": "sports",
+    "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80",
+    "date": "2025-10-05"
+  },
+  {
+    "id": 8,
+    "title": "Classroom Learning",
+    "caption": "Interactive learning session in the newly renovated classroom",
+    "category": "academic",
+    "image": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80",
+    "date": "2025-09-20"
+  },
+  {
+    "id": 9,
+    "title": "School Library",
+    "caption": "Students reading in the digitally upgraded school library",
+    "category": "academic",
+    "image": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
+    "date": "2025-09-10"
+  },
+  {
+    "id": 10,
+    "title": "Tree Plantation Drive",
+    "caption": "Teachers and students planting saplings for Green School Award",
+    "category": "environment",
+    "image": "https://images.unsplash.com/photo-1542601906897-eef44d7a5c5c?w=800&q=80",
+    "date": "2025-08-20"
+  },
+  {
+    "id": 11,
+    "title": "Drawing Competition",
+    "caption": "Annual drawing and painting competition",
+    "category": "cultural",
+    "image": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80",
+    "date": "2025-07-15"
+  },
+  {
+    "id": 12,
+    "title": "Prize Distribution Ceremony",
+    "caption": "Headmaster distributing prizes to meritorious students",
+    "category": "academic",
+    "image": "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=800&q=80",
+    "date": "2025-12-22"
+  }
+]

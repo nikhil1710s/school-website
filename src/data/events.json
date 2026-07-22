@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "title": "Annual Sports Day",
+    "date": "2026-04-08",
+    "time": "9:00 AM",
+    "venue": "School Playground",
+    "category": "sports",
+    "description": "Annual Inter-House Sports Competition featuring athletics, team sports, and cultural performances. A grand celebration of health and sportsmanship.",
+    "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80",
+    "upcoming": true
+  },
+  {
+    "id": 2,
+    "title": "Parent-Teacher Meeting",
+    "date": "2026-04-12",
+    "time": "9:00 AM",
+    "venue": "School Hall",
+    "category": "academic",
+    "description": "Quarterly Parent-Teacher interaction session. Parents can discuss their ward's academic progress, attendance and behaviour with respective teachers.",
+    "image": "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&q=80",
+    "upcoming": true
+  },
+  {
+    "id": 3,
+    "title": "Science Exhibition",
+    "date": "2026-04-25",
+    "time": "10:00 AM",
+    "venue": "School Grounds",
+    "category": "academic",
+    "description": "District-level Science Exhibition where students display their innovative projects and models. Open to judges, parents, and the public.",
+    "image": "https://images.unsplash.com/photo-1532094349884-543559c3661a?w=600&q=80",
+    "upcoming": true
+  },
+  {
+    "id": 4,
+    "title": "Annual Day Celebrations",
+    "date": "2026-03-20",
+    "time": "5:00 PM",
+    "venue": "School Auditorium",
+    "category": "cultural",
+    "description": "Grand Annual Day with cultural performances by students — dances, dramas, skits, and prize distribution. A celebration of talent and hard work.",
+    "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80",
+    "upcoming": false
+  },
+  {
+    "id": 5,
+    "title": "Republic Day Celebrations",
+    "date": "2026-01-26",
+    "time": "8:00 AM",
+    "venue": "School Ground",
+    "category": "national",
+    "description": "Republic Day flag hoisting, march past, patriotic songs, and speeches by students. A proud moment celebrating our nation's democracy.",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    "upcoming": false
+  },
+  {
+    "id": 6,
+    "title": "Children's Day Program",
+    "date": "2025-11-14",
+    "time": "10:00 AM",
+    "venue": "School Hall",
+    "category": "cultural",
+    "description": "Special Children's Day celebration with fun activities, games, competitions, and entertainment organized by teachers for the students.",
+    "image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80",
+    "upcoming": false
+  }
+]
