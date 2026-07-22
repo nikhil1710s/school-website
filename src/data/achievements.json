@@ -1,0 +1,125 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "K. Lakshmi Prasanna",
+      "class": "Class 10",
+      "achievement": "District Topper — SSC Examinations 2025",
+      "award": "GPA 10.0",
+      "year": "2025",
+      "category": "academic",
+      "featured": true,
+      "description": "Scored a perfect GPA of 10.0 in SSC Board Examinations and stood first in Vizianagaram District."
+    },
+    {
+      "id": 2,
+      "name": "M. Venkata Sai",
+      "class": "Class 9",
+      "achievement": "State Level Kabaddi Championship",
+      "award": "Gold Medal",
+      "year": "2025",
+      "category": "sports",
+      "featured": true,
+      "description": "Won Gold Medal at the State Level School Kabaddi Championship held in Vijayawada."
+    },
+    {
+      "id": 3,
+      "name": "B. Anitha",
+      "class": "Class 10",
+      "achievement": "National Science Olympiad",
+      "award": "State Rank 3",
+      "year": "2025",
+      "category": "academic",
+      "featured": false,
+      "description": "Secured State Rank 3 in the National Science Olympiad, representing Andhra Pradesh."
+    },
+    {
+      "id": 4,
+      "name": "P. Ravi Kumar",
+      "class": "Class 8",
+      "achievement": "District Drawing Competition",
+      "award": "First Prize",
+      "year": "2025",
+      "category": "cultural",
+      "featured": false,
+      "description": "Won First Prize in the District-Level Drawing and Painting Competition."
+    },
+    {
+      "id": 5,
+      "name": "T. Mounika",
+      "class": "Class 7",
+      "achievement": "State Elocution Contest",
+      "award": "Second Prize",
+      "year": "2025",
+      "category": "cultural",
+      "featured": false,
+      "description": "Won Second Prize in the State-Level Telugu Elocution Competition for school students."
+    },
+    {
+      "id": 6,
+      "name": "G. Srinivas",
+      "class": "Class 10",
+      "achievement": "Mathematics Olympiad",
+      "award": "District First",
+      "year": "2024",
+      "category": "academic",
+      "featured": false,
+      "description": "Topped the Vizianagaram District Mathematics Olympiad for consecutive second year."
+    }
+  ],
+  "teachers": [
+    {
+      "id": 1,
+      "name": "Sri. M. Subrahmanyam",
+      "subject": "Mathematics",
+      "achievement": "Best Teacher Award — District Level",
+      "year": "2025",
+      "featured": true,
+      "description": "Recognized as the Best Mathematics Teacher in Vizianagaram District by the District Education Department."
+    },
+    {
+      "id": 2,
+      "name": "Smt. V. Saraswathi",
+      "subject": "Science",
+      "achievement": "State Level Innovation Award",
+      "year": "2024",
+      "featured": false,
+      "description": "Awarded for innovative teaching methods in Science education using locally available materials."
+    },
+    {
+      "id": 3,
+      "name": "Sri. K. Prasad",
+      "subject": "Physical Education",
+      "achievement": "Meritorious Sports Coach Award",
+      "year": "2024",
+      "featured": false,
+      "description": "Honored for outstanding coaching services that led students to win State Level Sports Championships."
+    }
+  ],
+  "school": [
+    {
+      "id": 1,
+      "achievement": "Best Government School — Vizianagaram District",
+      "year": "2025",
+      "awardedBy": "District Collector, Vizianagaram",
+      "featured": true,
+      "description": "ZPHS Anandhapuram was honoured as the Best Government School in Vizianagaram District for academic excellence, infrastructure, and student welfare."
+    },
+    {
+      "id": 2,
+      "achievement": "100% Pass Rate — SSC Examinations",
+      "year": "2025",
+      "awardedBy": "Board of Secondary Education, AP",
+      "featured": true,
+      "description": "Achieved 100% pass percentage in SSC Board Examinations for the third consecutive year."
+    },
+    {
+      "id": 3,
+      "achievement": "Green School Award",
+      "year": "2024",
+      "awardedBy": "AP Pollution Control Board",
+      "featured": false,
+      "description": "Recognized for maintaining an eco-friendly campus with extensive plantation and zero plastic usage."
+    }
+  ]
+}

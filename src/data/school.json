@@ -1,0 +1,33 @@
+{
+  "name": "ZPHS, Anandhapuram",
+  "fullName": "Zilla Parishad High School, Anandhapuram",
+  "tagline": "Empowering Minds, Shaping Futures",
+  "welcomeMessage": "Welcome to ZPHS Anandhapuram — a centre of excellence where every child's potential is nurtured with care, dedication, and quality education.",
+  "established": "1975",
+  "district": "Vizianagaram",
+  "state": "Andhra Pradesh",
+  "address": "ZPHS Anandhapuram, Anandhapuram Village, Vizianagaram District, Andhra Pradesh - 535280",
+  "phone": "+91 98765 43210",
+  "altPhone": "+91 91234 56789",
+  "email": "zphs.anandhapuram@gmail.com",
+  "principal": {
+    "name": "Sri. K. Venkateswara Rao",
+    "title": "Headmaster",
+    "message": "It is my privilege to welcome you to ZPHS Anandhapuram. Our school stands as a beacon of quality education in the Vizianagaram district. We are committed to providing holistic education that goes beyond textbooks — nurturing curiosity, creativity, and character in every student. Our dedicated teachers work tirelessly to ensure that every child, regardless of background, receives the best education possible. I invite you to explore our school and become a part of our growing family.",
+    "qualifications": "M.A., B.Ed.",
+    "experience": "25+ years"
+  },
+  "stats": {
+    "students": 650,
+    "teachers": 28,
+    "classrooms": 15,
+    "yearsOfExcellence": 51,
+    "passingPercentage": 98
+  },
+  "socialMedia": {
+    "facebook": "#",
+    "youtube": "#",
+    "whatsapp": "#"
+  },
+  "mapEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30592.82038456396!2d83.35!3d18.12!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3c0f4b2c3d4e5f%3A0x1234567890abcdef!2sAnandhapuram%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1712345678901!5m2!1sen!2sin"
+}
