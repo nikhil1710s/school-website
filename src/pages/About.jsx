@@ -1,6 +1,7 @@
+import { useState, useEffect } from 'react';
 import { FaSchool, FaEye, FaBullseye, FaHistory, FaAward, FaUsers } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import schoolData from '../data/school.json';
+import * as schoolService from '../services/schoolService';
 import './About.css';
 
 const timeline = [
@@ -13,6 +14,30 @@ const timeline = [
 ];
 
 export default function About() {
+  const [schoolData, setSchoolData] = useState({
+    fullName: 'Zilla Parishad High School, Anandhapuram',
+    established: '1975',
+    district: 'Vizianagaram',
+    stats: { students: 650, teachers: 28, classrooms: 15, yearsOfExcellence: 51, passingPercentage: 98 },
+    principal: { name: 'Sri. K. Venkateswara Rao', title: 'Headmaster', message: '', qualifications: 'M.A., B.Ed.', experience: '25+ years' }
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    schoolService.get()
+      .then(data => {
+        if (data && Object.keys(data).length > 0) {
+          setSchoolData(prev => ({
+            ...prev,
+            ...data,
+            stats: { ...prev.stats, ...data.stats },
+            principal: { ...prev.principal, ...data.principal },
+          }));
+        }
+      })
+      .catch(err => console.error('Failed to load school info:', err))
+      .finally(() => setLoading(false));
+  }, []);
   return (
     <div>
       <div className="page-hero">
@@ -139,7 +164,7 @@ export default function About() {
           </div>
           <div className="principal-card">
             <div className="principal-card-avatar">
-              <div className="avatar-circle">{schoolData.principal.name[0]}</div>
+              <div className="avatar-circle">{schoolData.principal?.name ? schoolData.principal.name[0] : 'P'}</div>
               <h3>{schoolData.principal.name}</h3>
               <p>{schoolData.principal.title}</p>
               <div className="badge badge-primary">{schoolData.principal.qualifications}</div>

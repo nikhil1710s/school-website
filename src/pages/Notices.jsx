@@ -1,19 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaBell, FaSearch, FaThumbtack, FaFilePdf, FaFilter } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import noticesData from '../data/notices.json';
+import * as noticesService from '../services/noticesService';
 import './Notices.css';
 
 const categories = ['All', 'exam', 'general', 'result', 'meeting', 'scholarship', 'event'];
 const catColors = { exam: 'badge-danger', general: 'badge-primary', result: 'badge-accent', meeting: 'badge-purple', scholarship: 'badge-secondary', event: 'badge-accent' };
 
 export default function Notices() {
+  const [noticesData, setNoticesData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('All');
 
+  useEffect(() => {
+    noticesService.getAll()
+      .then(data => setNoticesData(data))
+      .catch(err => console.error('Failed to load notices:', err))
+      .finally(() => setLoading(false));
+  }, []);
+
   const filtered = noticesData
     .filter(n => filter === 'All' || n.category === filter)
-    .filter(n => n.title.toLowerCase().includes(search.toLowerCase()) || n.content.toLowerCase().includes(search.toLowerCase()))
+    .filter(n => (n.title || '').toLowerCase().includes(search.toLowerCase()) || (n.content || '').toLowerCase().includes(search.toLowerCase()))
     .sort((a, b) => {
       if (a.pinned && !b.pinned) return -1;
       if (!a.pinned && b.pinned) return 1;
@@ -58,8 +67,13 @@ export default function Notices() {
             Showing <strong>{filtered.length}</strong> notice{filtered.length !== 1 ? 's' : ''}
           </p>
 
-          {/* Notices */}
-          <div className="notices-stack">
+          {loading ? (
+            <div className="text-center" style={{ padding: '60px 0' }}>
+              <div className="spinner" style={{ margin: '0 auto 16px' }} />
+              <p className="text-muted">Loading notices...</p>
+            </div>
+          ) : (
+            <div className="notices-stack">
             {filtered.map((n, i) => (
               <motion.div
                 key={n.id}
@@ -101,6 +115,7 @@ export default function Notices() {
               </div>
             )}
           </div>
+          )}
         </div>
       </section>
     </div>

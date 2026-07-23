@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaSearch, FaEnvelope, FaChalkboardTeacher } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import facultyData from '../data/faculty.json';
+import * as facultyService from '../services/facultyService';
 import './Faculty.css';
 
 const subjects = ['All', 'Telugu', 'English', 'Hindi', 'Mathematics', 'Science', 'Social Studies', 'Physical Education', 'Administration'];
@@ -9,8 +9,17 @@ const subjects = ['All', 'Telugu', 'English', 'Hindi', 'Mathematics', 'Science',
 const avatarColors = ['#2563eb','#f59e0b','#10b981','#8b5cf6','#ec4899','#f97316','#06b6d4','#ef4444','#84cc16','#0ea5e9'];
 
 export default function Faculty() {
+  const [facultyData, setFacultyData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('All');
+
+  useEffect(() => {
+    facultyService.getAll()
+      .then(data => setFacultyData(data))
+      .catch(err => console.error('Failed to load faculty:', err))
+      .finally(() => setLoading(false));
+  }, []);
 
   const filtered = facultyData.filter(f => {
     const matchFilter = filter === 'All' || f.subject === filter;
@@ -57,8 +66,13 @@ export default function Faculty() {
             Showing <strong>{filtered.length}</strong> of {facultyData.length} teachers
           </p>
 
-          {/* Cards */}
-          <div className="faculty-grid">
+          {loading ? (
+            <div className="text-center" style={{ padding: '60px 0' }}>
+              <div className="spinner" style={{ margin: '0 auto 16px' }} />
+              <p className="text-muted">Loading faculty details...</p>
+            </div>
+          ) : (
+            <div className="faculty-grid">
             {filtered.map((f, i) => {
               const color = avatarColors[i % avatarColors.length];
               return (
@@ -89,8 +103,9 @@ export default function Faculty() {
               );
             })}
           </div>
+          )}
 
-          {filtered.length === 0 && (
+          {!loading && filtered.length === 0 && (
             <div className="no-results">
               <FaChalkboardTeacher />
               <h3>No teachers found</h3>

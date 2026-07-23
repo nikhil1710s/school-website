@@ -1,17 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaSearch, FaTimes, FaChevronLeft, FaChevronRight, FaCalendarAlt, FaTag } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
-import galleryData from '../data/gallery.json';
-import eventsData from '../data/events.json';
+import * as galleryService from '../services/galleryService';
+import * as eventsService from '../services/eventsService';
 import './Gallery.css';
 
 const categories = ['All', 'sports', 'cultural', 'academic', 'national', 'environment'];
 const catLabels = { All: 'All', sports: '🏅 Sports', cultural: '🎭 Cultural', academic: '📚 Academic', national: '🇮🇳 National', environment: '🌿 Environment' };
 
 export default function Gallery() {
+  const [galleryData, setGalleryData] = useState([]);
+  const [eventsData, setEventsData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('All');
   const [lightbox, setLightbox] = useState(null);
   const [tab, setTab] = useState('gallery');
+
+  useEffect(() => {
+    Promise.all([galleryService.getAll(), eventsService.getAll()])
+      .then(([gal, ev]) => {
+        setGalleryData(gal);
+        setEventsData(ev);
+      })
+      .catch(err => console.error('Failed to load gallery/events:', err))
+      .finally(() => setLoading(false));
+  }, []);
 
   const filtered = galleryData.filter(g => filter === 'All' || g.category === filter);
 
@@ -37,7 +50,14 @@ export default function Gallery() {
 
       <section className="section">
         <div className="container">
-          {/* Tab Toggle */}
+          {loading ? (
+            <div className="text-center" style={{ padding: '60px 0' }}>
+              <div className="spinner" style={{ margin: '0 auto 16px' }} />
+              <p className="text-muted">Loading gallery and events...</p>
+            </div>
+          ) : (
+            <>
+              {/* Tab Toggle */}
           <div className="gal-tabs">
             <button className={`gal-tab${tab === 'gallery' ? ' active' : ''}`} onClick={() => setTab('gallery')}>📸 Photo Gallery</button>
             <button className={`gal-tab${tab === 'events' ? ' active' : ''}`} onClick={() => setTab('events')}>📅 All Events</button>
@@ -122,6 +142,8 @@ export default function Gallery() {
                 </motion.div>
               ))}
             </div>
+          )}
+          </>
           )}
         </div>
       </section>

@@ -1,10 +1,12 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   FaGraduationCap, FaPhone, FaEnvelope, FaMapMarkerAlt,
   FaFacebook, FaYoutube, FaWhatsapp, FaHeart,
   FaArrowRight
 } from 'react-icons/fa';
-import schoolData from '../../data/school.json';
+import * as schoolService from '../../services/schoolService';
+import * as contactService from '../../services/contactService';
 import './Footer.css';
 
 const quickLinks = [
@@ -23,6 +25,30 @@ const moreLinks = [
 ];
 
 export default function Footer() {
+  const [schoolData, setSchoolData] = useState({
+    fullName: 'Zilla Parishad High School, Anandhapuram',
+    tagline: 'Empowering Minds, Shaping Futures',
+    established: '1975',
+    district: 'Vizianagaram',
+    address: 'ZPHS Anandhapuram, Anandhapuram Village, Vizianagaram District, Andhra Pradesh - 535280',
+    phone: '+91 98765 43210',
+    email: 'zphs.anandhapuram@gmail.com',
+    socialMedia: { facebook: '#', youtube: '#', whatsapp: '#' }
+  });
+
+  useEffect(() => {
+    Promise.all([schoolService.get(), contactService.get()])
+      .then(([schInfo, conInfo]) => {
+        setSchoolData(prev => ({
+          ...prev,
+          ...schInfo,
+          ...conInfo,
+          socialMedia: { ...prev.socialMedia, ...conInfo?.socialMedia }
+        }));
+      })
+      .catch(err => console.error('Failed to load footer info:', err));
+  }, []);
+
   return (
     <footer className="footer">
       <div className="footer-wave">
@@ -45,9 +71,9 @@ export default function Footer() {
             <p className="footer-tagline">{schoolData.tagline}</p>
             <p className="footer-desc">Established in {schoolData.established}, ZPHS Anandhapuram has been a beacon of quality education in {schoolData.district} district, Andhra Pradesh.</p>
             <div className="footer-social">
-              <a href={schoolData.socialMedia.facebook} className="social-btn facebook" aria-label="Facebook"><FaFacebook /></a>
-              <a href={schoolData.socialMedia.youtube} className="social-btn youtube" aria-label="YouTube"><FaYoutube /></a>
-              <a href={schoolData.socialMedia.whatsapp} className="social-btn whatsapp" aria-label="WhatsApp"><FaWhatsapp /></a>
+              <a href={schoolData.socialMedia?.facebook || '#'} className="social-btn facebook" aria-label="Facebook"><FaFacebook /></a>
+              <a href={schoolData.socialMedia?.youtube || '#'} className="social-btn youtube" aria-label="YouTube"><FaYoutube /></a>
+              <a href={schoolData.socialMedia?.whatsapp || '#'} className="social-btn whatsapp" aria-label="WhatsApp"><FaWhatsapp /></a>
             </div>
           </div>
 

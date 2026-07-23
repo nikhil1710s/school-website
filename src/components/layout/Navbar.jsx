@@ -4,7 +4,7 @@ import {
   FaGraduationCap, FaBars, FaTimes, FaChevronDown,
   FaPhone, FaEnvelope, FaFacebook, FaYoutube, FaWhatsapp
 } from 'react-icons/fa';
-import schoolData from '../../data/school.json';
+import * as contactService from '../../services/contactService';
 import './Navbar.css';
 
 const navLinks = [
@@ -30,8 +30,27 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [schoolData, setSchoolData] = useState({
+    phone: '+91 98765 43210',
+    email: 'zphs.anandhapuram@gmail.com',
+    socialMedia: { facebook: '#', youtube: '#', whatsapp: '#' }
+  });
   const dropdownRef = useRef(null);
   const location = useLocation();
+
+  useEffect(() => {
+    contactService.get()
+      .then(data => {
+        if (data && Object.keys(data).length > 0) {
+          setSchoolData(prev => ({
+            ...prev,
+            ...data,
+            socialMedia: { ...prev.socialMedia, ...data.socialMedia }
+          }));
+        }
+      })
+      .catch(err => console.error('Failed to load navbar contact info:', err));
+  }, []);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -63,9 +82,9 @@ export default function Navbar() {
             <span><FaEnvelope /> {schoolData.email}</span>
           </div>
           <div className="topbar-right">
-            <a href={schoolData.socialMedia.facebook} aria-label="Facebook"><FaFacebook /></a>
-            <a href={schoolData.socialMedia.youtube} aria-label="YouTube"><FaYoutube /></a>
-            <a href={schoolData.socialMedia.whatsapp} aria-label="WhatsApp"><FaWhatsapp /></a>
+            <a href={schoolData.socialMedia?.facebook || '#'} aria-label="Facebook"><FaFacebook /></a>
+            <a href={schoolData.socialMedia?.youtube || '#'} aria-label="YouTube"><FaYoutube /></a>
+            <a href={schoolData.socialMedia?.whatsapp || '#'} aria-label="WhatsApp"><FaWhatsapp /></a>
           </div>
         </div>
       </div>

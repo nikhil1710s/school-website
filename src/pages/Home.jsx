@@ -7,10 +7,10 @@ import {
   FaGraduationCap, FaMapMarkerAlt, FaCheckCircle
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import schoolData from '../data/school.json';
-import notices from '../data/notices.json';
-import events from '../data/events.json';
-import gallery from '../data/gallery.json';
+import * as schoolService from '../services/schoolService';
+import * as noticesService from '../services/noticesService';
+import * as eventsService from '../services/eventsService';
+import * as galleryService from '../services/galleryService';
 import './Home.css';
 
 const heroSlides = [
@@ -58,6 +58,41 @@ const highlights = [
 export default function Home() {
   const [slide, setSlide] = useState(0);
   const [gallerySlide, setGallerySlide] = useState(0);
+  const [schoolData, setSchoolData] = useState({
+    established: '1975',
+    district: 'Vizianagaram',
+    stats: { students: 650, teachers: 28, passingPercentage: 98, yearsOfExcellence: 51 },
+    principal: { name: 'Sri. K. Venkateswara Rao', title: 'Headmaster', message: 'It is my privilege to welcome you to ZPHS Anandhapuram.', qualifications: 'M.A., B.Ed.' }
+  });
+  const [notices, setNotices] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [gallery, setGallery] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    Promise.all([
+      schoolService.get(),
+      noticesService.getAll(),
+      eventsService.getAll(),
+      galleryService.getAll()
+    ])
+      .then(([schInfo, noticesData, eventsData, galleryData]) => {
+        if (schInfo && Object.keys(schInfo).length > 0) {
+          setSchoolData(prev => ({
+            ...prev,
+            ...schInfo,
+            stats: { ...prev.stats, ...schInfo.stats },
+            principal: { ...prev.principal, ...schInfo.principal }
+          }));
+        }
+        if (noticesData) setNotices(noticesData);
+        if (eventsData) setEvents(eventsData);
+        if (galleryData) setGallery(galleryData);
+      })
+      .catch(err => console.error('Failed to load Home data:', err))
+      .finally(() => setLoading(false));
+  }, []);
+
   const upcomingEvents = events.filter(e => e.upcoming).slice(0, 3);
   const recentNotices = notices.slice(0, 5);
   const galleryImages = gallery.slice(0, 6);
@@ -70,8 +105,16 @@ export default function Home() {
     return () => clearInterval(timer);
   }, [nextSlide]);
 
-  const nextGallery = () => setGallerySlide(s => (s + 1) % galleryImages.length);
-  const prevGallery = () => setGallerySlide(s => (s - 1 + galleryImages.length) % galleryImages.length);
+  const nextGallery = () => {
+    if (galleryImages.length > 0) {
+      setGallerySlide(s => (s + 1) % galleryImages.length);
+    }
+  };
+  const prevGallery = () => {
+    if (galleryImages.length > 0) {
+      setGallerySlide(s => (s - 1 + galleryImages.length) % galleryImages.length);
+    }
+  };
 
   const categoryBadge = (cat) => {
     const map = { exam: 'badge-danger', general: 'badge-primary', result: 'badge-accent', meeting: 'badge-purple', scholarship: 'badge-secondary', event: 'badge-accent' };
@@ -235,32 +278,34 @@ export default function Home() {
             <p>Glimpses of our vibrant school life — sports, culture, academics and more.</p>
             <div className="section-divider" />
           </div>
-          <div className="gallery-carousel">
-            <div className="gallery-main">
-              <img
-                src={galleryImages[gallerySlide].image}
-                alt={galleryImages[gallerySlide].caption}
-                className="gallery-main-img"
-              />
-              <div className="gallery-caption">
-                <strong>{galleryImages[gallerySlide].title}</strong>
-                <span>{galleryImages[gallerySlide].caption}</span>
+          {galleryImages.length > 0 && (
+            <div className="gallery-carousel">
+              <div className="gallery-main">
+                <img
+                  src={galleryImages[gallerySlide]?.image}
+                  alt={galleryImages[gallerySlide]?.caption || ''}
+                  className="gallery-main-img"
+                />
+                <div className="gallery-caption">
+                  <strong>{galleryImages[gallerySlide]?.title}</strong>
+                  <span>{galleryImages[gallerySlide]?.caption}</span>
+                </div>
+                <button className="gal-btn gal-prev" onClick={prevGallery}><FaChevronLeft /></button>
+                <button className="gal-btn gal-next" onClick={nextGallery}><FaChevronRight /></button>
               </div>
-              <button className="gal-btn gal-prev" onClick={prevGallery}><FaChevronLeft /></button>
-              <button className="gal-btn gal-next" onClick={nextGallery}><FaChevronRight /></button>
+              <div className="gallery-thumbs">
+                {galleryImages.map((img, i) => (
+                  <button
+                    key={img.id || i}
+                    className={`gallery-thumb${i === gallerySlide ? ' active' : ''}`}
+                    onClick={() => setGallerySlide(i)}
+                  >
+                    <img src={img.image} alt={img.caption || ''} />
+                  </button>
+                ))}
+              </div>
             </div>
-            <div className="gallery-thumbs">
-              {galleryImages.map((img, i) => (
-                <button
-                  key={img.id}
-                  className={`gallery-thumb${i === gallerySlide ? ' active' : ''}`}
-                  onClick={() => setGallerySlide(i)}
-                >
-                  <img src={img.image} alt={img.caption} />
-                </button>
-              ))}
-            </div>
-          </div>
+          )}
           <div className="text-center" style={{ marginTop: '32px' }}>
             <Link to="/gallery" className="btn btn-primary">View Full Gallery <FaExternalLinkAlt /></Link>
           </div>
@@ -272,15 +317,15 @@ export default function Home() {
         <div className="container principal-inner">
           <div className="principal-avatar">
             <div className="principal-avatar-circle">
-              {schoolData.principal.name.split(' ').slice(-1)[0][0]}
+              {schoolData.principal?.name ? schoolData.principal.name.split(' ').slice(-1)[0][0] : 'P'}
             </div>
           </div>
           <div className="principal-content">
             <div className="eyebrow" style={{ display:'inline-flex', marginBottom:'12px' }}>From the Headmaster's Desk</div>
-            <blockquote>"{schoolData.principal.message.slice(0, 200)}…"</blockquote>
+            <blockquote>"{schoolData.principal?.message ? schoolData.principal.message.slice(0, 200) : ''}…"</blockquote>
             <div className="principal-meta">
-              <strong>{schoolData.principal.name}</strong>
-              <span>{schoolData.principal.title} · {schoolData.principal.qualifications}</span>
+              <strong>{schoolData.principal?.name}</strong>
+              <span>{schoolData.principal?.title} · {schoolData.principal?.qualifications}</span>
             </div>
           </div>
           <Link to="/about" className="btn btn-outline" style={{ flexShrink: 0 }}>Read More <FaArrowRight /></Link>

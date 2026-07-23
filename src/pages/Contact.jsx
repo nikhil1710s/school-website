@@ -1,12 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock, FaCheckCircle, FaPaperPlane } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import schoolData from '../data/school.json';
+import * as schoolService from '../services/schoolService';
+import * as contactService from '../services/contactService';
 import './Contact.css';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [schoolData, setSchoolData] = useState({
+    address: 'ZPHS Anandhapuram, Anandhapuram Village, Vizianagaram District, Andhra Pradesh - 535280',
+    phone: '+91 98765 43210',
+    altPhone: '+91 91234 56789',
+    email: 'zphs.anandhapuram@gmail.com',
+    mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30592.82038456396!2d83.35!3d18.12!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3c0f4b2c3d4e5f%3A0x1234567890abcdef!2sAnandhapuram%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1712345678901!5m2!1sen!2sin'
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    Promise.all([schoolService.get(), contactService.get()])
+      .then(([schInfo, conInfo]) => {
+        setSchoolData(prev => ({
+          ...prev,
+          ...schInfo,
+          ...conInfo
+        }));
+      })
+      .catch(err => console.error('Failed to load contact info:', err))
+      .finally(() => setLoading(false));
+  }, []);
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
   const handleSubmit = e => {
@@ -18,7 +40,7 @@ export default function Contact() {
 
   const contactInfo = [
     { icon: FaMapMarkerAlt, color: '#2563eb', label: 'Address', value: schoolData.address },
-    { icon: FaPhone,        color: '#10b981', label: 'Phone',   value: `${schoolData.phone} / ${schoolData.altPhone}` },
+    { icon: FaPhone,        color: '#10b981', label: 'Phone',   value: schoolData.altPhone ? `${schoolData.phone} / ${schoolData.altPhone}` : schoolData.phone },
     { icon: FaEnvelope,     color: '#f59e0b', label: 'Email',   value: schoolData.email },
     { icon: FaClock,        color: '#8b5cf6', label: 'Office Hours', value: 'Mon – Sat: 9:00 AM – 4:00 PM' },
   ];

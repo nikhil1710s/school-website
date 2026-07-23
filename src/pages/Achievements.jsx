@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaTrophy, FaStar, FaMedal, FaUserGraduate, FaChalkboardTeacher, FaSchool } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import achievementsData from '../data/achievements.json';
+import * as achievementsService from '../services/achievementsService';
 import './Achievements.css';
 
 const tabs = [
@@ -13,11 +13,32 @@ const tabs = [
 const categoryColors = { academic: '#2563eb', sports: '#10b981', cultural: '#f59e0b', other: '#8b5cf6' };
 
 export default function Achievements() {
+  const [achievementsData, setAchievementsData] = useState({ students: [], teachers: [], school: [] });
+  const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('students');
 
-  const featuredStudents = achievementsData.students.filter(a => a.featured);
-  const others = achievementsData[activeTab].filter(a => !a.featured);
-  const allCurrent = achievementsData[activeTab];
+  useEffect(() => {
+    achievementsService.getAll()
+      .then(data => {
+        if (Array.isArray(data)) {
+          const students = data.filter(a => a.type === 'student' || a.type === 'students' || (!a.type && a.class));
+          const teachers = data.filter(a => a.type === 'teacher' || a.type === 'teachers' || (!a.type && a.subject && !a.class));
+          const school = data.filter(a => a.type === 'school' || (!a.type && a.awardedBy));
+          setAchievementsData({ students, teachers, school });
+        } else if (data && typeof data === 'object') {
+          setAchievementsData({
+            students: data.students || [],
+            teachers: data.teachers || [],
+            school: data.school || [],
+          });
+        }
+      })
+      .catch(err => console.error('Failed to load achievements:', err))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const featuredStudents = (achievementsData.students || []).filter(a => a.featured);
+  const allCurrent = achievementsData[activeTab] || [];
 
   return (
     <div>
@@ -28,7 +49,14 @@ export default function Achievements() {
         </div>
       </div>
 
-      {/* Featured */}
+      {loading ? (
+        <div className="text-center" style={{ padding: '60px 0' }}>
+          <div className="spinner" style={{ margin: '0 auto 16px' }} />
+          <p className="text-muted">Loading achievements...</p>
+        </div>
+      ) : (
+        <>
+          {/* Featured */}
       <section className="section featured-section">
         <div className="container">
           <div className="section-header">
@@ -111,6 +139,8 @@ export default function Achievements() {
           </div>
         </div>
       </section>
+        </>
+      )}
     </div>
   );
 }
