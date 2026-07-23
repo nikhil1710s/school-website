@@ -20,6 +20,7 @@ const navLinks = [
       { label: 'Events & Gallery', path: '/gallery' },
       { label: 'Notices', path: '/notices' },
       { label: 'Achievements', path: '/achievements' },
+      { label: 'Downloads', path: '/downloads' },
     ]
   },
   { label: 'Contact', path: '/contact' },

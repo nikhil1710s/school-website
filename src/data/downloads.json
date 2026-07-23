@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "Academic Calendar 2025-26",
+    "description": "Complete academic calendar including holidays, examination dates and events for the session 2025-26.",
+    "fileUrl": "#",
+    "category": "academic",
+    "date": "2025-06-01",
+    "fileSize": "1.2 MB",
+    "fileType": "PDF"
+  },
+  {
+    "id": 2,
+    "title": "Admission Form 2026-27",
+    "description": "Printable admission application form for new students seeking admission for the academic year 2026-27.",
+    "fileUrl": "#",
+    "category": "admission",
+    "date": "2026-03-15",
+    "fileSize": "0.8 MB",
+    "fileType": "PDF"
+  },
+  {
+    "id": 3,
+    "title": "Fee Structure 2026-27",
+    "description": "Detailed fee structure for all classes including optional activities and transport charges.",
+    "fileUrl": "#",
+    "category": "fee",
+    "date": "2026-03-10",
+    "fileSize": "0.4 MB",
+    "fileType": "PDF"
+  },
+  {
+    "id": 4,
+    "title": "SSC Examination Timetable 2026",
+    "description": "Official SSC board examination timetable for Class 10 students — subject-wise date and timing.",
+    "fileUrl": "#",
+    "category": "exam",
+    "date": "2026-02-20",
+    "fileSize": "0.5 MB",
+    "fileType": "PDF"
+  },
+  {
+    "id": 5,
+    "title": "Scholarship Application Form — SC/ST",
+    "description": "Pre-Matric scholarship application form for SC/ST students. Submit to school office by due date.",
+    "fileUrl": "#",
+    "category": "scholarship",
+    "date": "2026-03-01",
+    "fileSize": "0.6 MB",
+    "fileType": "PDF"
+  },
+  {
+    "id": 6,
+    "title": "Annual Report 2024-25",
+    "description": "Annual progress report of ZPHS Anandhapuram highlighting academic achievements, events and initiatives.",
+    "fileUrl": "#",
+    "category": "report",
+    "date": "2025-12-01",
+    "fileSize": "3.5 MB",
+    "fileType": "PDF"
+  }
+]
