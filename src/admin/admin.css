@@ -516,26 +516,7 @@
   color: var(--admin-text-muted);
 }
 
-.dashboard-info-banner {
-  background: linear-gradient(135deg, #1e293b, #0f172a);
-  color: #fff;
-  border-radius: var(--admin-radius);
-  padding: 20px 24px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-top: 12px;
-}
 
-.info-banner-icon {
-  font-size: 2rem;
-}
-
-.dashboard-info-banner p {
-  font-size: 0.85rem;
-  color: #94a3b8;
-  margin-top: 2px;
-}
 
 /* ─ Data Table ─ */
 .dt-wrapper {

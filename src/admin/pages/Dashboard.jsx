@@ -110,14 +110,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Info banner */}
-      <div className="dashboard-info-banner">
-        <div className="info-banner-icon">🔥</div>
-        <div>
-          <strong>Firebase Integration Ready</strong>
-          <p>All service files are prepared with Firebase-compatible function signatures. Connect your Firebase project to go live.</p>
-        </div>
-      </div>
+    
     </div>
   );
 }

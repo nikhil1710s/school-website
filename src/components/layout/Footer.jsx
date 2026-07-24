@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   FaGraduationCap, FaPhone, FaEnvelope, FaMapMarkerAlt,
   FaFacebook, FaYoutube, FaWhatsapp, FaHeart,
-  FaArrowRight
+  FaArrowRight, FaLock
 } from 'react-icons/fa';
 import * as schoolService from '../../services/schoolService';
 import * as contactService from '../../services/contactService';
@@ -129,7 +129,12 @@ export default function Footer() {
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
           <p>© {new Date().getFullYear()} {schoolData.fullName}. All rights reserved.</p>
-          <p>Made with <FaHeart className="heart" /> for the students of ZPHS Anandhapuram</p>
+          <div className="footer-bottom-right">
+            <p>Made with <FaHeart className="heart" /> for the students of ZPHS Anandhapuram</p>
+            <Link to="/admin/login" className="admin-login-btn" title="Admin Portal Login">
+              <FaLock /> Admin Login
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
