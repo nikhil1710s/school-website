@@ -19,12 +19,22 @@ const CATEGORIES = [
 ];
 
 const COLUMNS = [
-  { key: 'image',    label: 'Preview',  render: v => v ? <img src={v} alt="thumb" className="dt-thumb" /> : '—' },
+  { key: 'image',    label: 'Preview',  render: v => v ? <img src={getImageUrl(v)} alt="thumb" className="dt-thumb" /> : '—' },
   { key: 'title',    label: 'Title'    },
   { key: 'caption',  label: 'Caption'  },
   { key: 'category', label: 'Category', render: v => <span className="admin-badge">{v}</span> },
   { key: 'date',     label: 'Date',     render: v => v ? new Date(v).toLocaleDateString('en-IN') : '—' },
 ];
+
+const getImageUrl = (path) => {
+  if (!path) return "";
+
+  // External URL
+  if (path.startsWith("http")) return path;
+
+  // Local image
+  return `${import.meta.env.BASE_URL}${path}`;
+};
 
 export default function AdminGallery() {
   const [rows, setRows]       = useState([]);
@@ -96,10 +106,10 @@ export default function AdminGallery() {
             <FormField label="Category" name="category" type="select" value={form.category} onChange={handleChange} options={CATEGORIES} />
             <FormField label="Date" name="date" type="date" value={form.date} onChange={handleChange} />
           </div>
-          <FormField label="Image URL" name="image" type="url" value={form.image} onChange={handleChange} required placeholder="https://…" hint="When using Firebase, use Storage download URL." />
+          <FormField label="Image Path" name="image" type="text" value={form.image} onChange={handleChange} required placeholder="images/gallery/" hint="Example: images/gallery/school-building.jpeg" />
           {form.image && (
             <div className="img-preview">
-              <img src={form.image} alt="preview" />
+              <img src={getImageUrl(form.image)} alt="preview" />
             </div>
           )}
           <div className="modal-footer">
