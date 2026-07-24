@@ -11,6 +11,7 @@ import * as schoolService from '../services/schoolService';
 import * as noticesService from '../services/noticesService';
 import * as eventsService from '../services/eventsService';
 import * as galleryService from '../services/galleryService';
+import { getImageUrl } from '../utils/imageUtils';
 import './Home.css';
 
 const heroSlides = [
@@ -282,7 +283,7 @@ export default function Home() {
             <div className="gallery-carousel">
               <div className="gallery-main">
                 <img
-                  src={galleryImages[gallerySlide]?.image}
+                  src={getImageUrl(galleryImages[gallerySlide]?.image)}
                   alt={galleryImages[gallerySlide]?.caption || ''}
                   className="gallery-main-img"
                 />
@@ -300,7 +301,7 @@ export default function Home() {
                     className={`gallery-thumb${i === gallerySlide ? ' active' : ''}`}
                     onClick={() => setGallerySlide(i)}
                   >
-                    <img src={img.image} alt={img.caption || ''} />
+                    <img src={getImageUrl(img.image)} alt={img.caption || ''} />
                   </button>
                 ))}
               </div>
@@ -317,7 +318,11 @@ export default function Home() {
         <div className="container principal-inner">
           <div className="principal-avatar">
             <div className="principal-avatar-circle">
-              {schoolData.principal?.name ? schoolData.principal.name.split(' ').slice(-1)[0][0] : 'P'}
+              {(schoolData.principal?.image || schoolData.principal?.photo) ? (
+                <img src={getImageUrl(schoolData.principal.image || schoolData.principal.photo)} alt={schoolData.principal?.name || 'Principal'} style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+              ) : (
+                schoolData.principal?.name ? schoolData.principal.name.split(' ').slice(-1)[0][0] : 'P'
+              )}
             </div>
           </div>
           <div className="principal-content">

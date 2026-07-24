@@ -115,17 +115,17 @@ export default function AdminDownloads() {
           <div className="form-row-2">
             <FormField label="Upload Date" name="date" type="date" value={form.date} onChange={handleChange} />
             <FormField
-              label="File URL"
+              label="File Path / URL"
               name="fileUrl"
               value={form.fileUrl}
               onChange={handleChange}
-              placeholder="https://… (Firebase Storage URL)"
-              hint="Paste Firebase Storage download URL after upload."
+              placeholder="e.g. downloads/admission-form.pdf or URL"
+              hint="Enter local file path (e.g. downloads/...) or external URL."
             />
           </div>
 
           <div className="admin-info-box">
-            <strong>📎 Firebase Storage Note:</strong> Upload the file to Firebase Storage, copy the download URL, and paste it in the File URL field above.
+            <strong>📎 Local File / Path Note:</strong> Store static downloadable files in the project (e.g. inside public/downloads/) or paste an external download URL above.
           </div>
 
           <div className="modal-footer">

@@ -6,6 +6,7 @@ import ConfirmDialog from '../components/ConfirmDialog';
 import FormField     from '../components/FormField';
 import { showToast } from '../components/Toast';
 import * as service  from '../../services/eventsService';
+import { getImageUrl } from '../../utils/imageUtils';
 
 const EMPTY = {
   title: '', date: '', time: '', venue: '',
@@ -21,6 +22,7 @@ const CATEGORIES = [
 ];
 
 const COLUMNS = [
+  { key: 'image',    label: 'Preview',  render: v => v ? <img src={getImageUrl(v)} alt="thumb" className="dt-thumb" /> : '—' },
   { key: 'title',    label: 'Title' },
   { key: 'date',     label: 'Date',     render: v => v ? new Date(v).toLocaleDateString('en-IN') : '—' },
   { key: 'time',     label: 'Time' },
@@ -103,7 +105,12 @@ export default function AdminEvents() {
           </div>
           <FormField label="Venue" name="venue" value={form.venue} onChange={handleChange} placeholder="e.g. School Playground" />
           <FormField label="Description" name="description" type="textarea" rows={3} value={form.description} onChange={handleChange} />
-          <FormField label="Image URL" name="image" type="url" value={form.image} onChange={handleChange} placeholder="https://…" hint="Paste a direct image URL." />
+          <FormField label="Image Path" name="image" type="text" value={form.image} onChange={handleChange} placeholder="images/events/science-fair.jpeg" hint="Example: images/events/science-fair.jpeg or external image URL" />
+          {form.image && (
+            <div className="img-preview">
+              <img src={getImageUrl(form.image)} alt="preview" />
+            </div>
+          )}
           <FormField label="Mark as Upcoming" name="upcoming" type="checkbox" value={form.upcoming} onChange={handleChange} />
           <div className="modal-footer">
             <button type="button" className="admin-btn admin-btn-ghost" onClick={() => setModal(false)} disabled={saving}>Cancel</button>

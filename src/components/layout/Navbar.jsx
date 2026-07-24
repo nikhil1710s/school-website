@@ -5,6 +5,7 @@ import {
   FaPhone, FaEnvelope, FaFacebook, FaYoutube, FaWhatsapp
 } from 'react-icons/fa';
 import * as contactService from '../../services/contactService';
+import { getImageUrl } from '../../utils/imageUtils';
 import './Navbar.css';
 
 const navLinks = [
@@ -94,7 +95,13 @@ export default function Navbar() {
         <div className="container navbar-inner">
           {/* Logo */}
           <Link to="/" className="nav-logo">
-            <div className="nav-logo-icon"><FaGraduationCap /></div>
+            <div className="nav-logo-icon">
+              {schoolData.logo ? (
+                <img src={getImageUrl(schoolData.logo)} alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+              ) : (
+                <FaGraduationCap />
+              )}
+            </div>
             <div className="nav-logo-text">
               <span className="nav-logo-main">ZPHS</span>
               <span className="nav-logo-sub">Anandhapuram</span>

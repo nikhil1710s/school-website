@@ -3,6 +3,7 @@ import { FaSearch, FaTimes, FaChevronLeft, FaChevronRight, FaCalendarAlt, FaTag 
 import { motion, AnimatePresence } from 'framer-motion';
 import * as galleryService from '../services/galleryService';
 import * as eventsService from '../services/eventsService';
+import { getImageUrl } from '../utils/imageUtils';
 import './Gallery.css';
 
 const categories = ['All', 'sports', 'cultural', 'academic', 'national', 'environment'];
@@ -88,7 +89,7 @@ export default function Gallery() {
                       className="gal-item"
                       onClick={() => openLightbox(img)}
                     >
-                      <img src={img.image} alt={img.caption} loading="lazy" />
+                      <img src={getImageUrl(img.image)} alt={img.caption} loading="lazy" />
                       <div className="gal-overlay">
                         <div className="gal-item-info">
                           <span className="badge badge-primary">{img.category}</span>
@@ -122,7 +123,7 @@ export default function Gallery() {
                   className="event-full-card"
                 >
                   <div className="efc-img-wrap">
-                    <img src={ev.image} alt={ev.title} />
+                    <img src={getImageUrl(ev.image)} alt={ev.title} />
                     {ev.upcoming && <span className="upcoming-badge">Upcoming</span>}
                   </div>
                   <div className="efc-body">
@@ -166,7 +167,7 @@ export default function Gallery() {
               animate={{ scale: 1 }}
               onClick={e => e.stopPropagation()}
             >
-              <img src={lightbox.image} alt={lightbox.caption} />
+              <img src={getImageUrl(lightbox.image)} alt={lightbox.caption} />
               <div className="lb-caption">
                 <strong>{lightbox.title}</strong>
                 <span>{lightbox.caption}</span>

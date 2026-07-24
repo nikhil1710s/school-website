@@ -6,10 +6,11 @@ import ConfirmDialog from '../components/ConfirmDialog';
 import FormField     from '../components/FormField';
 import { showToast } from '../components/Toast';
 import * as service  from '../../services/achievementsService';
+import { getImageUrl } from '../../utils/imageUtils';
 
 const EMPTY = {
   type: 'student', name: '', achievement: '', award: '', year: '',
-  category: 'academic', featured: false, description: '',
+  category: 'academic', featured: false, description: '', image: '',
   subject: '', awardedBy: '', class: '',
 };
 
@@ -17,6 +18,7 @@ const TYPES      = [{ value: 'student', label: 'Student' }, { value: 'teacher', 
 const CATEGORIES = [{ value: 'academic', label: 'Academic' }, { value: 'sports', label: 'Sports' }, { value: 'cultural', label: 'Cultural' }];
 
 const COLUMNS = [
+  { key: 'image',       label: 'Preview',     render: v => v ? <img src={getImageUrl(v)} alt="thumb" className="dt-thumb" /> : '—' },
   { key: 'type',        label: 'Type',        render: v => <span className="admin-badge">{v}</span> },
   { key: 'name',        label: 'Name / Title' },
   { key: 'achievement', label: 'Achievement'  },
@@ -125,6 +127,12 @@ export default function AdminAchievements() {
           </div>
 
           <FormField label="Description" name="description" type="textarea" rows={3} value={form.description} onChange={handleChange} />
+          <FormField label="Image Path" name="image" type="text" value={form.image || ''} onChange={handleChange} placeholder="images/achievements/trophy.jpeg" hint="Example: images/achievements/gold-medal.jpeg or external image URL" />
+          {form.image && (
+            <div className="img-preview">
+              <img src={getImageUrl(form.image)} alt="preview" />
+            </div>
+          )}
           <FormField label="Mark as Featured" name="featured" type="checkbox" value={form.featured} onChange={handleChange} />
 
           <div className="modal-footer">

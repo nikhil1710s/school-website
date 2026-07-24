@@ -6,6 +6,7 @@ import ConfirmDialog from '../components/ConfirmDialog';
 import FormField     from '../components/FormField';
 import { showToast } from '../components/Toast';
 import * as service  from '../../services/galleryService';
+import { getImageUrl } from '../../utils/imageUtils';
 
 const EMPTY = { title: '', caption: '', category: 'academic', image: '', date: '' };
 
@@ -25,16 +26,6 @@ const COLUMNS = [
   { key: 'category', label: 'Category', render: v => <span className="admin-badge">{v}</span> },
   { key: 'date',     label: 'Date',     render: v => v ? new Date(v).toLocaleDateString('en-IN') : '—' },
 ];
-
-const getImageUrl = (path) => {
-  if (!path) return "";
-
-  // External URL
-  if (path.startsWith("http")) return path;
-
-  // Local image
-  return `${import.meta.env.BASE_URL}${path}`;
-};
 
 export default function AdminGallery() {
   const [rows, setRows]       = useState([]);

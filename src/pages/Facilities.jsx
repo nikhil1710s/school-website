@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FaSchool, FaBook, FaFlask, FaFutbol, FaBus, FaTint, FaDesktop, FaUtensils, FaToilet, FaLeaf } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { getImageUrl } from '../utils/imageUtils';
 import './Facilities.css';
 
 const facilities = [
@@ -116,7 +117,7 @@ export default function Facilities() {
               transition={{ duration: 0.35 }}
               className="fac-detail"
             >
-              <img src={active.image} alt={active.title} className="fac-img" />
+              <img src={getImageUrl(active.image)} alt={active.title} className="fac-img" />
               <div className="fac-detail-body">
                 <div className="fac-detail-header">
                   <div className="fac-detail-icon" style={{ background: active.color + '18', color: active.color }}>

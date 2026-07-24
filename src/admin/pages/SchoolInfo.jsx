@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import FormField     from '../components/FormField';
 import { showToast } from '../components/Toast';
 import * as service  from '../../services/schoolService';
+import { getImageUrl } from '../../utils/imageUtils';
 
 export default function AdminSchoolInfo() {
   const [form, setForm]       = useState(null);
@@ -67,6 +68,12 @@ export default function AdminSchoolInfo() {
               <FormField label="District" name="district" value={form.district} onChange={handleChange} />
               <FormField label="State"    name="state"    value={form.state}    onChange={handleChange} />
             </div>
+            <FormField label="School / Campus Image Path" name="image" value={form.image || ''} onChange={handleChange} placeholder="images/gallery/school-building.jpeg" hint="Example: images/gallery/school-building.jpeg" />
+            {form.image && (
+              <div className="img-preview" style={{ marginBottom: '16px' }}>
+                <img src={getImageUrl(form.image)} alt="Campus preview" />
+              </div>
+            )}
             <FormField label="Welcome Message" name="welcomeMessage" type="textarea" rows={3} value={form.welcomeMessage} onChange={handleChange} />
           </div>
         </div>
@@ -83,6 +90,12 @@ export default function AdminSchoolInfo() {
               <FormField label="Qualifications" name="principal.qualifications" value={form.principal?.qualifications || ''} onChange={handleChange} />
               <FormField label="Experience"     name="principal.experience"     value={form.principal?.experience     || ''} onChange={handleChange} />
             </div>
+            <FormField label="Principal Photo Path" name="principal.image" value={form.principal?.image || form.principal?.photo || ''} onChange={handleChange} placeholder="images/faculty/principal.jpg" hint="Example: images/faculty/principal.jpg" />
+            {(form.principal?.image || form.principal?.photo) && (
+              <div className="img-preview" style={{ marginBottom: '16px' }}>
+                <img src={getImageUrl(form.principal.image || form.principal.photo)} alt="Principal preview" />
+              </div>
+            )}
             <FormField label="Message" name="principal.message" type="textarea" rows={4} value={form.principal?.message || ''} onChange={handleChange} />
           </div>
         </div>

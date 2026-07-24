@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { FaTrophy, FaStar, FaMedal, FaUserGraduate, FaChalkboardTeacher, FaSchool } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import * as achievementsService from '../services/achievementsService';
+import { getImageUrl } from '../utils/imageUtils';
 import './Achievements.css';
 
 const tabs = [
@@ -121,6 +122,11 @@ export default function Achievements() {
                     {a.featured ? <FaTrophy /> : <FaMedal />}
                   </div>
                   <div className="achiev-body">
+                    {a.image && (
+                      <div className="achiev-img-wrap" style={{ marginBottom: '12px' }}>
+                        <img src={getImageUrl(a.image)} alt={a.achievement} style={{ width: '100%', maxHeight: '160px', objectFit: 'cover', borderRadius: '8px' }} />
+                      </div>
+                    )}
                     <div className="achiev-year-tag">{a.year}</div>
                     <h4>{activeTab === 'students' ? a.achievement : activeTab === 'teachers' ? a.achievement : a.achievement}</h4>
                     <p className="achiev-name">

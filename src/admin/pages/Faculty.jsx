@@ -6,13 +6,24 @@ import ConfirmDialog from '../components/ConfirmDialog';
 import FormField    from '../components/FormField';
 import { showToast } from '../components/Toast';
 import * as service from '../../services/facultyService';
+import { getImageUrl, isImagePath } from '../../utils/imageUtils';
 
 const EMPTY = {
-  name: '', role: '', subject: '', qualifications: '', experience: '', email: '', avatar: '',
+  name: '', role: '', subject: '', qualifications: '', experience: '', email: '', avatar: '', image: '',
 };
 
 const COLUMNS = [
-  { key: 'avatar',         label: 'Avatar' },
+  {
+    key: 'avatar',
+    label: 'Avatar / Photo',
+    render: (v, row) => {
+      const img = row.image || v;
+      if (isImagePath(img)) {
+        return <img src={getImageUrl(img)} alt={row.name} className="dt-thumb" />;
+      }
+      return <span className="admin-badge badge-blue">{v || '—'}</span>;
+    }
+  },
   { key: 'name',           label: 'Name' },
   { key: 'role',           label: 'Role' },
   { key: 'subject',        label: 'Subject' },
@@ -131,9 +142,14 @@ export default function AdminFaculty() {
           </div>
           <div className="form-row-2">
             <FormField label="Experience"     name="experience"     value={form.experience}     onChange={handleChange} placeholder="e.g. 15 years" />
-            <FormField label="Avatar Initials" name="avatar"        value={form.avatar}         onChange={handleChange} placeholder="e.g. MS" hint="2 capital letters shown on faculty card." />
+            <FormField label="Photo Path or Initials" name="avatar" value={form.avatar} onChange={handleChange} placeholder="images/faculty/principal.jpg or MS" hint="Local path (e.g. images/faculty/teacher.jpg) or initials (e.g. MS)." />
           </div>
           <FormField label="Email" name="email" type="email" value={form.email} onChange={handleChange} placeholder="teacher@zphs.edu" />
+          {isImagePath(form.image || form.avatar) && (
+            <div className="img-preview">
+              <img src={getImageUrl(form.image || form.avatar)} alt="preview" />
+            </div>
+          )}
           <div className="modal-footer">
             <button type="button" className="admin-btn admin-btn-ghost" onClick={closeModal} disabled={saving}>Cancel</button>
             <button type="submit" className="admin-btn admin-btn-primary" disabled={saving}>

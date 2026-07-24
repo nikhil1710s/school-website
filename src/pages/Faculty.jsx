@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { FaSearch, FaEnvelope, FaChalkboardTeacher } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import * as facultyService from '../services/facultyService';
+import { getImageUrl, isImagePath } from '../utils/imageUtils';
 import './Faculty.css';
 
 const subjects = ['All', 'Telugu', 'English', 'Hindi', 'Mathematics', 'Science', 'Social Studies', 'Physical Education', 'Administration'];
@@ -84,8 +85,12 @@ export default function Faculty() {
                   transition={{ delay: (i % 4) * 0.08 }}
                   className="faculty-card"
                 >
-                  <div className="faculty-avatar" style={{ background: `linear-gradient(135deg, ${color}, ${color}99)` }}>
-                    {f.avatar}
+                  <div className="faculty-avatar" style={{ background: isImagePath(f.image || f.avatar) ? 'transparent' : `linear-gradient(135deg, ${color}, ${color}99)` }}>
+                    {isImagePath(f.image || f.avatar) ? (
+                      <img src={getImageUrl(f.image || f.avatar)} alt={f.name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
+                    ) : (
+                      f.avatar
+                    )}
                   </div>
                   <div className="faculty-info">
                     <h3>{f.name}</h3>

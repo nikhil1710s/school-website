@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { FaSchool, FaEye, FaBullseye, FaHistory, FaAward, FaUsers } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import * as schoolService from '../services/schoolService';
+import { getImageUrl } from '../utils/imageUtils';
 import './About.css';
 
 const timeline = [
@@ -79,7 +80,7 @@ export default function About() {
             </motion.div>
             <motion.div initial={{ opacity:0, x:40 }} whileInView={{ opacity:1, x:0 }} viewport={{ once:true }} transition={{ duration:0.6 }}>
               <img
-                src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=700&q=80"
+                src={getImageUrl(schoolData.image || "images/gallery/school-building.jpeg")}
                 alt="School building"
                 className="about-img"
               />
@@ -164,7 +165,13 @@ export default function About() {
           </div>
           <div className="principal-card">
             <div className="principal-card-avatar">
-              <div className="avatar-circle">{schoolData.principal?.name ? schoolData.principal.name[0] : 'P'}</div>
+              <div className="avatar-circle">
+                {(schoolData.principal?.image || schoolData.principal?.photo) ? (
+                  <img src={getImageUrl(schoolData.principal.image || schoolData.principal.photo)} alt={schoolData.principal?.name || 'Principal'} style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+                ) : (
+                  schoolData.principal?.name ? schoolData.principal.name[0] : 'P'
+                )}
+              </div>
               <h3>{schoolData.principal.name}</h3>
               <p>{schoolData.principal.title}</p>
               <div className="badge badge-primary">{schoolData.principal.qualifications}</div>

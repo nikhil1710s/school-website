@@ -7,6 +7,7 @@ import {
 } from 'react-icons/fa';
 import * as schoolService from '../../services/schoolService';
 import * as contactService from '../../services/contactService';
+import { getImageUrl } from '../../utils/imageUtils';
 import './Footer.css';
 
 const quickLinks = [
@@ -62,7 +63,13 @@ export default function Footer() {
           {/* Brand */}
           <div className="footer-brand">
             <div className="footer-logo">
-              <div className="footer-logo-icon"><FaGraduationCap /></div>
+              <div className="footer-logo-icon">
+                {schoolData.logo ? (
+                  <img src={getImageUrl(schoolData.logo)} alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                ) : (
+                  <FaGraduationCap />
+                )}
+              </div>
               <div>
                 <div className="footer-logo-main">ZPHS</div>
                 <div className="footer-logo-sub">Anandhapuram</div>
